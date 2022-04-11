@@ -37,7 +37,14 @@ BaseApplication::BaseApplication(void)
     mInputManager(0),
     mMouse(0),
     mKeyboard(0),
-    mOverlaySystem(0)
+    mOverlaySystem(0),
+    mDistance(0),
+    mWalkSpd(70.0),
+    mDirection(Ogre::Vector3::ZERO),
+    mDestination(Ogre::Vector3::ZERO),
+    mAnimationState(0),
+    mEntity(0),
+    mNode(0)
 {
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
     m_ResourcePath = Ogre::macBundlePath() + "/Contents/Resources/";
@@ -284,6 +291,9 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
     // Need to capture/update each device
     mKeyboard->capture();
     mMouse->capture();
+
+    mAnimationState->addTime(evt.timeSinceLastFrame);
+
 
     mTrayMgr->frameRenderingQueued(evt);
 

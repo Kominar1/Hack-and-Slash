@@ -97,6 +97,13 @@ mSceneMgr->setFog(Ogre::FOG_EXP2, fadeColour, 0.002);
   cameraNode->attachObject(mCamera);
   cameraNode->setPosition(Ogre::Vector3(0, 150, 0));
 
+  mAnimationState = ninjaEntity->getAnimationState("Idle1");
+  mAnimationState->setLoop(true);
+  mAnimationState->setEnabled(true);
+
+
+
+
   /*
   Ogre::Entity* knotEntity = mSceneMgr->createEntity("knot.mesh");
   knotNode = ninjaNode->createChildSceneNode();

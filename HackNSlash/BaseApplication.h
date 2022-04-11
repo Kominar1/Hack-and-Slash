@@ -126,7 +126,7 @@ protected:
     // Added for Mac compatibility
     Ogre::String                 m_ResourcePath;
 
-    /*
+    
     Ogre::Real mDistance;
     Ogre::Real mWalkSpd;
     Ogre::Vector3 mDirection;
@@ -134,12 +134,9 @@ protected:
     Ogre::AnimationState* mAnimationState;
     Ogre::Entity* mEntity;
     Ogre::SceneNode* mNode;
-    */
+    
 
     Ogre::SceneNode* ninjaNode;
-    Ogre::SceneNode* knotNode;
-    Ogre::SceneNode* ogreNode;
-    Ogre::SceneNode* ogreNode1;
     Ogre::SceneNode* cameraNode;
     float walkingSpeed;
     float rotation;
