@@ -132,7 +132,7 @@ protected:
     Ogre::Vector3 mDirection;
     Ogre::Vector3 mDestination;
     Ogre::AnimationState* mAnimationState;
-    Ogre::Entity* mEntity;
+    Ogre::Entity* ninjaEntity;
     Ogre::SceneNode* mNode;
     
 

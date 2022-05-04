@@ -43,7 +43,7 @@ BaseApplication::BaseApplication(void)
     mDirection(Ogre::Vector3::ZERO),
     mDestination(Ogre::Vector3::ZERO),
     mAnimationState(0),
-    mEntity(0),
+    ninjaEntity(0),
     mNode(0)
 {
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
@@ -315,29 +315,6 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
     /*knotNode->rotate(Ogre::Quaternion(Ogre::Degree(0.1), Ogre::Vector3(0, 1, 0)), Ogre::Node::TransformSpace::TS_WORLD);
     ogreNode->lookAt(mCamera->getDerivedPosition(), Ogre::Node::TS_WORLD, Ogre::Vector3::UNIT_Z);
     */
-    Ogre::Vector3 ninjaTranslate(0, 0, 0);
-
-
-    if (mKeyboard->isKeyDown(OIS::KC_UP)) {
-        ninjaTranslate += Ogre::Vector3(0, 0, 10);
-        rotation = 3.14f;
-    }
-    if (mKeyboard->isKeyDown(OIS::KC_LEFT)) {
-        ninjaTranslate += Ogre::Vector3(10, 0, 0);
-        rotation = -1.57f;
-    }
-    if (mKeyboard->isKeyDown(OIS::KC_DOWN)) {
-        ninjaTranslate += Ogre::Vector3(0, 0, -10);
-        rotation = 0.0f;
-    }
-    if (mKeyboard->isKeyDown(OIS::KC_RIGHT)) {
-        ninjaTranslate += Ogre::Vector3(-10, 0, 0);
-        rotation = 1.57f;
-    }
-
-    ninjaNode->translate(ninjaTranslate * evt.timeSinceLastFrame);
-    ninjaNode->resetOrientation();
-    ninjaNode->yaw(Ogre::Radian(rotation));
     
     return true;
 }

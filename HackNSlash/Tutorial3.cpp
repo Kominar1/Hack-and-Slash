@@ -85,7 +85,7 @@ mSceneMgr->setFog(Ogre::FOG_EXP2, fadeColour, 0.002);
   // mSceneMgr->setSkyPlane(
   //   true, plane, "Examples/SpaceSkyPlane", 1500, 40, true, 1.5, 150, 150);
 
-  Ogre::Entity* ninjaEntity = mSceneMgr->createEntity("ninja.mesh");
+  ninjaEntity = mSceneMgr->createEntity("ninja.mesh");
   ninjaNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
   ninjaNode->attachObject(ninjaEntity);
   ninjaEntity->setCastShadows(true);
