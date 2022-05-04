@@ -141,6 +141,11 @@ protected:
     float walkingSpeed;
     float rotation;
 
+    bool moveLeft = false;
+    bool moveRight = false;
+    bool moveUp = false;
+    bool moveDown = false;
+    bool attack = false;
 
 
 

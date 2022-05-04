@@ -316,6 +316,46 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
     ogreNode->lookAt(mCamera->getDerivedPosition(), Ogre::Node::TS_WORLD, Ogre::Vector3::UNIT_Z);
     */
     
+   Ogre::Vector3 ninjaTranslate(0, 0, 0);
+
+   if (moveUp == true) {
+       mAnimationState = ninjaEntity->getAnimationState("Walk");
+       mAnimationState->setLoop(true);
+       mAnimationState->setEnabled(true);
+       ninjaTranslate += Ogre::Vector3(0, 0, 15);
+       rotation = 3.14f;
+   }
+   if (moveRight == true) {
+       mAnimationState = ninjaEntity->getAnimationState("Walk");
+       mAnimationState->setLoop(true);
+       mAnimationState->setEnabled(true);
+       ninjaTranslate += Ogre::Vector3(-15, 0, 0);
+       rotation = 1.57f;
+   }
+   if (moveDown == true) {
+       mAnimationState = ninjaEntity->getAnimationState("Walk");
+       mAnimationState->setLoop(true);
+       mAnimationState->setEnabled(true);
+       ninjaTranslate += Ogre::Vector3(0, 0, -15);
+       rotation = 0.0f;
+   }
+   if (moveLeft == true) {
+       mAnimationState = ninjaEntity->getAnimationState("Walk");
+       mAnimationState->setLoop(true);
+       mAnimationState->setEnabled(true);
+       ninjaTranslate += Ogre::Vector3(15, 0, 0);
+       rotation = -1.57f;
+   }
+   if (attack == true) {
+       mAnimationState = ninjaEntity->getAnimationState("Attack2");
+       mAnimationState->setLoop(true);
+       mAnimationState->setEnabled(true);
+   }
+
+   ninjaNode->translate(ninjaTranslate * evt.timeSinceLastFrame);
+   ninjaNode->resetOrientation();
+   ninjaNode->yaw(Ogre::Radian(rotation));
+
     return true;
 }
 //---------------------------------------------------------------------------
@@ -411,6 +451,18 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &arg )
 
     //mCameraMan->injectKeyDown(arg);
 
+    if (arg.key == OIS::KC_W) {
+        moveUp = true;
+    }
+    if (arg.key == OIS::KC_D) {
+        moveRight = true;
+    }
+    if (arg.key == OIS::KC_S) {
+        moveDown = true;
+    }
+    if (arg.key == OIS::KC_A) {
+        moveLeft = true;
+    }
 
     return true;
 }
@@ -418,6 +470,31 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &arg )
 bool BaseApplication::keyReleased(const OIS::KeyEvent &arg)
 {
     mCameraMan->injectKeyUp(arg);
+    mCameraMan->injectKeyUp(arg);
+    if (arg.key == OIS::KC_W) {
+        moveUp = false;
+        mAnimationState = ninjaEntity->getAnimationState("Idle1");
+        mAnimationState->setLoop(true);
+        mAnimationState->setEnabled(true);
+    }
+    if (arg.key == OIS::KC_D) {
+        moveRight = false;
+        mAnimationState = ninjaEntity->getAnimationState("Idle1");
+        mAnimationState->setLoop(true);
+        mAnimationState->setEnabled(true);
+    }
+    if (arg.key == OIS::KC_S) {
+        moveDown = false;
+        mAnimationState = ninjaEntity->getAnimationState("Idle1");
+        mAnimationState->setLoop(true);
+        mAnimationState->setEnabled(true);
+    }
+    if (arg.key == OIS::KC_A) {
+        moveLeft = false;
+        mAnimationState = ninjaEntity->getAnimationState("Idle1");
+        mAnimationState->setLoop(true);
+        mAnimationState->setEnabled(true);
+    }
     return true;
 }
 //---------------------------------------------------------------------------
@@ -432,6 +509,9 @@ bool BaseApplication::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonI
 {
     if (mTrayMgr->injectMouseDown(arg, id)) return true;
     mCameraMan->injectMouseDown(arg, id);
+    if(id == OIS::MB_Left) {
+        attack = true;
+    }
     return true;
 }
 //---------------------------------------------------------------------------
@@ -439,6 +519,12 @@ bool BaseApplication::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButton
 {
     if (mTrayMgr->injectMouseUp(arg, id)) return true;
     mCameraMan->injectMouseUp(arg, id);
+    if (id == OIS::MB_Left) {
+        attack = false;
+        mAnimationState = ninjaEntity->getAnimationState("Idle1");
+        mAnimationState->setLoop(true);
+        mAnimationState->setEnabled(true);
+    }
     return true;
 }
 //---------------------------------------------------------------------------
