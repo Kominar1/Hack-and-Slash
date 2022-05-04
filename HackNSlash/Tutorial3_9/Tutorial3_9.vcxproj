@@ -88,8 +88,8 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(OGRE_HOME9)/include/OGRE/Overlay;$(OGRE_HOME9)/include/OGRE;$(BOOST_DIR);$(OGRE_HOME9)/include/OIS;$(OGRE_HOME9)/include;$(CEGUI_INCLUDE)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>

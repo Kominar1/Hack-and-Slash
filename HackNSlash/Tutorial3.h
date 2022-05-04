@@ -23,6 +23,9 @@ private:
   bool mTerrainsImported;
   Ogre::TerrainGroup* mTerrainGroup;
   Ogre::TerrainGlobalOptions* mTerrainGlobals;
+  CEGUI::OgreRenderer* mRenderer;
+  int numKilled = 0;
+
  
   OgreBites::Label* mInfoLabel;
  

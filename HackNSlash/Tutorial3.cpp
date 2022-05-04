@@ -13,6 +13,15 @@ TutorialApplication::~TutorialApplication()
  
 void TutorialApplication::createScene()
 {
+
+    mRenderer = &CEGUI::OgreRenderer::bootstrapSystem();
+    CEGUI::ImageManager::setImagesetDefaultResourceGroup("Imagesets");
+    CEGUI::Font::setDefaultResourceGroup("Fonts");
+    CEGUI::Scheme::setDefaultResourceGroup("Schemes");
+    CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
+    CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
+    CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
+    CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("TaharezLook/MouseArrow");
   //mCamera->setPosition(Ogre::Vector3(1913, 40, 1800));
   //mCamera->lookAt(Ogre::Vector3(1923, 50, 1660));
   mCamera->setNearClipDistance(.1);
@@ -101,7 +110,13 @@ mSceneMgr->setFog(Ogre::FOG_EXP2, fadeColour, 0.002);
   mAnimationState->setLoop(true);
   mAnimationState->setEnabled(true);
 
-
+  CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
+  CEGUI::Window* sheet = wmgr.createWindow("DefaultWindow", "CEGUIDemo/Sheet");
+  CEGUI::Window* quit = wmgr.createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
+  quit->setText(std::to_string(numKilled));
+  quit->setSize(CEGUI::USize(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
+  sheet->addChild(quit);
+  CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet);
 
 
   /*
