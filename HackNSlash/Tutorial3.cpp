@@ -112,13 +112,34 @@ mSceneMgr->setFog(Ogre::FOG_EXP2, fadeColour, 0.002);
 
   CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
   CEGUI::Window* sheet = wmgr.createWindow("DefaultWindow", "CEGUIDemo/Sheet");
-  CEGUI::Window* quit = wmgr.createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
-  quit->setText(std::to_string(numKilled));
-  quit->setSize(CEGUI::USize(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
-  sheet->addChild(quit);
+
+  CEGUI::Window* kills = wmgr.createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
+  kills->setText("Kills");
+  kills->setSize(CEGUI::USize(CEGUI::UDim(0.10, 0), CEGUI::UDim(0.05, 0)));
+  kills->setPosition(CEGUI::UVector2(CEGUI::UDim(0, 0), CEGUI::UDim(0, 50)));
+  sheet->addChild(kills);
   CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet);
 
+  kills1 = wmgr.createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
+  kills1->setText(std::to_string(numKilled));
+  kills1->setSize(CEGUI::USize(CEGUI::UDim(0.10, 0), CEGUI::UDim(0.05, 0)));
+  kills1->setPosition(CEGUI::UVector2(CEGUI::UDim(0, 110), CEGUI::UDim(0, 50)));
+  sheet->addChild(kills1);
+  CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet);
 
+  
+  health = wmgr.createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
+  health->setText(std::to_string(numHealth));
+  health->setSize(CEGUI::USize(CEGUI::UDim(0.10, 0), CEGUI::UDim(0.05, 0)));
+  health->setPosition(CEGUI::UVector2(CEGUI::UDim(0, 110), CEGUI::UDim(0, 0)));
+  sheet->addChild(health);
+  CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet);
+
+  CEGUI::Window* health1 = wmgr.createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
+  health1->setText("Health");
+  health1->setSize(CEGUI::USize(CEGUI::UDim(0.10, 0), CEGUI::UDim(0.05, 0)));
+  sheet->addChild(health1);
+  CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet);
   /*
   Ogre::Entity* knotEntity = mSceneMgr->createEntity("knot.mesh");
   knotNode = ninjaNode->createChildSceneNode();

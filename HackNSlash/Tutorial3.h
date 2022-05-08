@@ -25,6 +25,10 @@ private:
   Ogre::TerrainGlobalOptions* mTerrainGlobals;
   CEGUI::OgreRenderer* mRenderer;
   int numKilled = 0;
+  int numHealth = 100;
+  CEGUI::Window* health;
+  CEGUI::Window* kills1;
+
 
  
   OgreBites::Label* mInfoLabel;
